@@ -53,13 +53,11 @@ class Parser
 		return to_add;
 	}
 
-public:
-	void ProcessContent(vector<uint8_t> _content) {
-		content_in = _content;
+	void ParseToRead() {
 		index = 0;
-		
+
 		ProcessBMPHEAD();
-		int skip = (4 - (head.width * sizeof(PIXELDATA)) % 4)%4;
+		int skip = (4 - (head.width * sizeof(PIXELDATA)) % 4) % 4;
 
 		for (int i = 0; i < head.depth; i++) {
 			vector<PIXELDATA> row;
@@ -93,8 +91,8 @@ public:
 		content_out.push_back(data.first.biYPelsPerMeter);
 		content_out.push_back(data.first.biClrUsed);
 		content_out.push_back(data.first.biClrImportant);
-		
-		int skip = (4 - (data.first.width * sizeof(PIXELDATA)) % 4)%4;
+
+		int skip = (4 - (data.first.width * sizeof(PIXELDATA)) % 4) % 4;
 
 		for (const vector<PIXELDATA>& row : data.second) {
 			for (const PIXELDATA& pixel : row) {
@@ -107,12 +105,16 @@ public:
 			}
 		}
 	}
-
-	pair<BMPHEAD, vector<vector<PIXELDATA>>> GetData() {
+public:
+	
+	pair<BMPHEAD, vector<vector<PIXELDATA>>> GetDataToProcess(vector<uint8_t> _content) {
+		content_in = _content;
+		ParseToRead();
 		return make_pair(head, pixels);
 	}
 
-	vector<uint32_t> GetDataToWrite() {
+	vector<uint32_t> GetDataToWrite(pair<BMPHEAD, vector<vector<PIXELDATA>>> data) {
+		ParseToWrite(data);
 		return content_out;
 	}
 };

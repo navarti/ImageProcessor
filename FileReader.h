@@ -4,7 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include <cstdint>
-
+#include "Validator.h"
 
 
 using namespace std;
@@ -12,19 +12,17 @@ using namespace std;
 
 class FileReader
 {
-	//string input_filename;
-	//string output_filename;
+	Validator* validator;
 
 public:
-	//FileReader(string _input_filename, string _output_filename) : 
-	//			input_filename(_input_filename), output_filename(_output_filename) {}
-
+	
+	FileReader(Validator* _validator) : validator(_validator) {}
 
 	vector<uint8_t> ReadFile(string filename) {
 		vector<uint8_t> content;
 		ifstream file(filename, ios::binary | ios::in);
 		if (!file.is_open()) {
-			//validator->AddError("Error while openning file\n");
+			validator->AddError("Error while openning file\n");
 			return content;
 		}
 		while (!file.eof())
@@ -38,6 +36,10 @@ public:
 		const int size = 17;
 		const int sequence[17] = { 1, 1, 4, 2, 2, 4, 4, 4, 4, 2, 2, 4, 4, 4, 4, 4, 4 };
 		ofstream file(filename, ios::binary | ios::out);
+		if (!file.is_open()) {
+			validator->AddError("Error while openning file\n");
+			return;
+		}
 		for (int i = 0; i < content.size(); i++) {
 			file.write(reinterpret_cast<const char*>(&content[i]), (i<size ? sequence[i] : 1));
 		}

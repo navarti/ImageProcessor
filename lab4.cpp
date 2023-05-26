@@ -6,31 +6,29 @@
 
 using namespace std;
 
-//будуть завтра
-
-bool is_number(const std::string& s);
-bool is_file(const std::string& s);
-
+bool CheckValidator(Validator* validator) {
+    if (!validator->IsValid()) {
+        validator->PrintErrors();
+        exit(3);
+    }
+}
 
 int main(int argc, char* argv[])
 {
     Validator validator;
     validator.CheckArguments(argc, argv);
+    CheckValidator(&validator);
     
-    FileReader fr;
+    FileReader fr(&validator);
     Parser parser;
-    parser.ProcessContent(fr.ReadFile(argv[1]));
+    vector<uint8_t> to_parse = fr.ReadFile(argv[1]);
+    CheckValidator(&validator);
 
-    ImageProcessor ip(stoi(argv[3]), parser.GetData());
+    ImageProcessor ip(stoi(argv[3]), parser.GetDataToProcess(to_parse));
     ip.IncreaseSize();
-
-    parser.ParseToWrite(ip.GetDaata());
-    fr.Write(parser.GetDataToWrite(), string(argv[2]));
+    fr.Write(parser.GetDataToWrite(ip.GetData()), argv[2]);
+    CheckValidator(&validator);
 
     cout << "Success";
 }
-
-
-
-
 

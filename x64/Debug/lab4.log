@@ -1,6 +1,14 @@
-﻿  lab4.cpp
+﻿  ImageProcessor.cpp
 D:\KPI1-2\OP\V\lab4\lab4\ImageProcessor.h(31,21): warning C4018: '<': signed/unsigned mismatch
 D:\KPI1-2\OP\V\lab4\lab4\ImageProcessor.h(33,22): warning C4018: '<': signed/unsigned mismatch
-D:\KPI1-2\OP\V\lab4\lab4\Parser.h(64,21): warning C4018: '<': signed/unsigned mismatch
-D:\KPI1-2\OP\V\lab4\lab4\Parser.h(66,22): warning C4018: '<': signed/unsigned mismatch
+  Parser.cpp
+D:\KPI1-2\OP\V\lab4\lab4\Parser.h(62,21): warning C4018: '<': signed/unsigned mismatch
+D:\KPI1-2\OP\V\lab4\lab4\Parser.h(64,22): warning C4018: '<': signed/unsigned mismatch
+  lab4.cpp
+D:\KPI1-2\OP\V\lab4\lab4\ImageProcessor.h(31,21): warning C4018: '<': signed/unsigned mismatch
+D:\KPI1-2\OP\V\lab4\lab4\ImageProcessor.h(33,22): warning C4018: '<': signed/unsigned mismatch
+D:\KPI1-2\OP\V\lab4\lab4\Parser.h(62,21): warning C4018: '<': signed/unsigned mismatch
+D:\KPI1-2\OP\V\lab4\lab4\Parser.h(64,22): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+D:\KPI1-2\OP\V\lab4\lab4\lab4.cpp(14): warning C4715: 'CheckValidator': not all control paths return a value
   lab4.vcxproj -> D:\KPI1-2\OP\V\lab4\lab4\x64\Debug\lab4.exe

@@ -67,7 +67,7 @@ public:
 		IncreasePixels();
 	}
 
-	pair<BMPHEAD, vector<vector<PIXELDATA>>> GetDaata() {
+	pair<BMPHEAD, vector<vector<PIXELDATA>>> GetData() {
 		return make_pair(new_head, new_pixels);
 	}
 };
