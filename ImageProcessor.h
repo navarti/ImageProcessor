@@ -26,11 +26,9 @@ class ImageProcessor
 
 	void IncreasePixels() {	
 
-		int skip = (4 - (new_head.width * sizeof(PIXELDATA)) % 4)%4;
-
 		for (int i = 0; i < new_head.depth; i++) {
 			vector<PIXELDATA> row;
-			for (int j = 0; j < new_head.width + skip; j++) {
+			for (int j = 0; j < new_head.width; j++) {
 				row.push_back(PIXELDATA());
 			}
 			new_pixels.push_back(row);

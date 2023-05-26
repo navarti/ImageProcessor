@@ -1,12 +1,9 @@
 ﻿  ImageProcessor.cpp
-D:\KPI1-2\OP\V\lab4\lab4\ImageProcessor.h(31,21): warning C4018: '<': signed/unsigned mismatch
-D:\KPI1-2\OP\V\lab4\lab4\ImageProcessor.h(33,22): warning C4018: '<': signed/unsigned mismatch
-  Parser.cpp
-D:\KPI1-2\OP\V\lab4\lab4\Parser.h(62,21): warning C4018: '<': signed/unsigned mismatch
-D:\KPI1-2\OP\V\lab4\lab4\Parser.h(64,22): warning C4018: '<': signed/unsigned mismatch
+D:\KPI1-2\OP\V\lab4\lab4\ImageProcessor.h(29,21): warning C4018: '<': signed/unsigned mismatch
+D:\KPI1-2\OP\V\lab4\lab4\ImageProcessor.h(31,22): warning C4018: '<': signed/unsigned mismatch
   lab4.cpp
-D:\KPI1-2\OP\V\lab4\lab4\ImageProcessor.h(31,21): warning C4018: '<': signed/unsigned mismatch
-D:\KPI1-2\OP\V\lab4\lab4\ImageProcessor.h(33,22): warning C4018: '<': signed/unsigned mismatch
+D:\KPI1-2\OP\V\lab4\lab4\ImageProcessor.h(29,21): warning C4018: '<': signed/unsigned mismatch
+D:\KPI1-2\OP\V\lab4\lab4\ImageProcessor.h(31,22): warning C4018: '<': signed/unsigned mismatch
 D:\KPI1-2\OP\V\lab4\lab4\Parser.h(62,21): warning C4018: '<': signed/unsigned mismatch
 D:\KPI1-2\OP\V\lab4\lab4\Parser.h(64,22): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
