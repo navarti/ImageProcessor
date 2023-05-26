@@ -9,31 +9,33 @@ using namespace std;
 class ImageProcessor
 {
 	int n;
+	
 	BMPHEAD head;
 	BMPHEAD new_head;
 	vector<vector<PIXELDATA>> pixels;
 	vector<vector<PIXELDATA>> new_pixels;
 
-	//const int headsize = 54;
-	const int pixelsize = 3;
-
 	void IncreaseHead() {
-		int headsize = head.filesize - head.width * head.depth * pixelsize;
+		int headsize = head.filesize - head.width * head.depth * sizeof(PIXELDATA);
 		
 		new_head.depth *= n;
 		new_head.width *= n;
-		new_head.filesize = headsize + new_head.depth * new_head.width * pixelsize;
+		new_head.filesize = headsize + new_head.depth * new_head.width * sizeof(PIXELDATA);
 		return;
 	}
 
 	void IncreasePixels() {	
+
+		int skip = (4 - (new_head.width * sizeof(PIXELDATA)) % 4)%4;
+
 		for (int i = 0; i < new_head.depth; i++) {
 			vector<PIXELDATA> row;
-			for (int j = 0; j < new_head.width; j++) {
+			for (int j = 0; j < new_head.width + skip; j++) {
 				row.push_back(PIXELDATA());
 			}
 			new_pixels.push_back(row);
 		}
+
 		
 		int index_row = 0;
 		int index_col = 0;
@@ -57,11 +59,7 @@ class ImageProcessor
 
 public:
 	ImageProcessor(int _n, pair<BMPHEAD, vector<vector<PIXELDATA>>> data) :
-		n(_n), head(data.first), pixels(data.second), new_head(data.first) {
-
-
-
-	}
+		n(_n), head(data.first), pixels(data.second), new_head(data.first) {}
 
 	
 	void IncreaseSize() {

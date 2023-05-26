@@ -1,6 +1,7 @@
 #pragma once
 #include <cstdint>
 
+
 typedef struct {
     uint8_t id[2];            // Завжди дві літери 'B' і 'M'
     uint32_t filesize;        // Розмір файла в байтах   +++        
@@ -22,7 +23,8 @@ typedef struct {
 
 
 typedef struct {
-    uint8_t redComponent;     
+    uint8_t redComponent;
     uint8_t greenComponent;
     uint8_t blueComponent;
 } PIXELDATA;
+

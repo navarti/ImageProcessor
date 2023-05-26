@@ -6,6 +6,7 @@
 #include <cstdint>
 
 
+
 using namespace std;
 
 
@@ -34,11 +35,11 @@ public:
 	}
 
 	void Write(vector<uint32_t> content, string filename) {
-		const int sequence[] = {1,1,4,2,2,4,4,4,4,2,2,4,4,4,4,4,4};
-
+		const int size = 17;
+		const int sequence[17] = { 1, 1, 4, 2, 2, 4, 4, 4, 4, 2, 2, 4, 4, 4, 4, 4, 4 };
 		ofstream file(filename, ios::binary | ios::out);
 		for (int i = 0; i < content.size(); i++) {
-			file.write(reinterpret_cast<const char*>(&content[i]), (i<17 ? sequence[i] : 1));
+			file.write(reinterpret_cast<const char*>(&content[i]), (i<size ? sequence[i] : 1));
 		}
 	}
 };

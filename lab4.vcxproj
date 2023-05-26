@@ -137,6 +137,7 @@
     <ClInclude Include="ImageProcessor.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="Structs.h" />
+    <ClInclude Include="Validator.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="images\bmp.bmp" />

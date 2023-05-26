@@ -1,10 +1,6 @@
-﻿  ImageProcessor.cpp
-D:\KPI1-2\OP\V\lab4\lab4\ImageProcessor.h(30,21): warning C4018: '<': signed/unsigned mismatch
-D:\KPI1-2\OP\V\lab4\lab4\ImageProcessor.h(32,22): warning C4018: '<': signed/unsigned mismatch
-  lab4.cpp
-D:\KPI1-2\OP\V\lab4\lab4\ImageProcessor.h(30,21): warning C4018: '<': signed/unsigned mismatch
-D:\KPI1-2\OP\V\lab4\lab4\ImageProcessor.h(32,22): warning C4018: '<': signed/unsigned mismatch
-D:\KPI1-2\OP\V\lab4\lab4\Parser.h(68,21): warning C4018: '<': signed/unsigned mismatch
-D:\KPI1-2\OP\V\lab4\lab4\Parser.h(70,22): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
+﻿  lab4.cpp
+D:\KPI1-2\OP\V\lab4\lab4\ImageProcessor.h(31,21): warning C4018: '<': signed/unsigned mismatch
+D:\KPI1-2\OP\V\lab4\lab4\ImageProcessor.h(33,22): warning C4018: '<': signed/unsigned mismatch
+D:\KPI1-2\OP\V\lab4\lab4\Parser.h(64,21): warning C4018: '<': signed/unsigned mismatch
+D:\KPI1-2\OP\V\lab4\lab4\Parser.h(66,22): warning C4018: '<': signed/unsigned mismatch
   lab4.vcxproj -> D:\KPI1-2\OP\V\lab4\lab4\x64\Debug\lab4.exe
