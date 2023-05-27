@@ -56,13 +56,13 @@ class ImageProcessor
 	}
 
 public:
-	ImageProcessor(int _n, pair<BMPHEAD, vector<vector<PIXELDATA>>> data) :
-		n(_n), head(data.first), pixels(data.second), new_head(data.first) {}
+	ImageProcessor(int _n, pair<BMPHEAD, vector<vector<PIXELDATA>>>* data) :
+		n(_n), head((*data).first), pixels((*data).second), new_head((*data).first) {}
 
-	
 	void IncreaseSize() {
 		IncreaseHead();
 		IncreasePixels();
+		pixels.clear();
 	}
 
 	pair<BMPHEAD, vector<vector<PIXELDATA>>> GetData() {

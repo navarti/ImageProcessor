@@ -21,11 +21,14 @@ int main(int argc, char* argv[])
     CheckValidator(&validator);
     
     FileReader fr(&validator);
-    Parser parser;
+    Parser parser(&validator);
     pair<BMPHEAD, vector<uint8_t>> data = fr.ReadFile(argv[1]);
     CheckValidator(&validator);
 
-    ImageProcessor ip(stoi(argv[3]), parser.GetDataToProcess(data));
+    pair<BMPHEAD, vector<vector<PIXELDATA>>> parsed_data = parser.GetDataToProcess(&data);
+    CheckValidator(&validator);
+
+    ImageProcessor ip(stoi(argv[3]), &parsed_data);
     ip.IncreaseSize();
     fr.Write(parser.GetDataToWrite(ip.GetData()), argv[2]);
     CheckValidator(&validator);
