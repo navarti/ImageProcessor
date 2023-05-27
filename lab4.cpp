@@ -1,6 +1,7 @@
 #include <iostream>
 #include "ImageProcessor.h"
 #include "Parser.h"
+#include "Structs.h"
 #include "FileReader.h"
 #include "Validator.h"
 
@@ -21,10 +22,10 @@ int main(int argc, char* argv[])
     
     FileReader fr(&validator);
     Parser parser;
-    vector<uint8_t> to_parse = fr.ReadFile(argv[1]);
+    pair<BMPHEAD, vector<uint8_t>> data = fr.ReadFile(argv[1]);
     CheckValidator(&validator);
 
-    ImageProcessor ip(stoi(argv[3]), parser.GetDataToProcess(to_parse));
+    ImageProcessor ip(stoi(argv[3]), parser.GetDataToProcess(data));
     ip.IncreaseSize();
     fr.Write(parser.GetDataToWrite(ip.GetData()), argv[2]);
     CheckValidator(&validator);
