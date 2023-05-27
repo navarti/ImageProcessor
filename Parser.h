@@ -10,10 +10,10 @@ using namespace std;
 class Parser
 {
 	vector<uint8_t> content_in;
-	vector<uint32_t> content_out;
+	int index;
+
 	BMPHEAD head;
 	vector<vector<PIXELDATA>> pixels;
-	int index;
 
 	int32_t Read(int size){
 		int32_t result = 0;
@@ -30,7 +30,7 @@ class Parser
 		head.id[1] = Read(sizeof(head.id[0]));
 		head.filesize = Read(sizeof(head.filesize));
 		head.reserved[0] = Read(sizeof(head.reserved[0]));
-		head.reserved[1] = Read(sizeof(head.reserved[0]));
+		head.reserved[1] = Read(sizeof(head.reserved[1]));
 		head.headersize= Read(sizeof(head.headersize));
 		head.infoSize= Read(sizeof(head.infoSize));
 		head.width= Read(sizeof(head.width));
@@ -71,51 +71,34 @@ class Parser
 		}
 	}
 
-	void ParseToWrite(pair<BMPHEAD, vector<vector<PIXELDATA>>> data) {
-		content_out.clear();
+	vector<uint8_t> ParseToWrite(vector<vector<PIXELDATA>> pixels, int width) {
 
-		content_out.push_back(data.first.id[0]);
-		content_out.push_back(data.first.id[1]);
-		content_out.push_back(data.first.filesize);
-		content_out.push_back(data.first.reserved[0]);
-		content_out.push_back(data.first.reserved[1]);
-		content_out.push_back(data.first.headersize);
-		content_out.push_back(data.first.infoSize);
-		content_out.push_back(data.first.width);
-		content_out.push_back(data.first.depth);
-		content_out.push_back(data.first.biPlanes);
-		content_out.push_back(data.first.bits);
-		content_out.push_back(data.first.biCompression);
-		content_out.push_back(data.first.biSizeImage);
-		content_out.push_back(data.first.biXPelsPerMeter);
-		content_out.push_back(data.first.biYPelsPerMeter);
-		content_out.push_back(data.first.biClrUsed);
-		content_out.push_back(data.first.biClrImportant);
+		vector<uint8_t> res;
+		int skip = (4 - ( width * sizeof(PIXELDATA)) % 4) % 4;
 
-		int skip = (4 - (data.first.width * sizeof(PIXELDATA)) % 4) % 4;
-
-		for (const vector<PIXELDATA>& row : data.second) {
+		for (const vector<PIXELDATA>& row : pixels) {
 			for (const PIXELDATA& pixel : row) {
-				content_out.push_back(pixel.redComponent);
-				content_out.push_back(pixel.greenComponent);
-				content_out.push_back(pixel.blueComponent);
+				res.push_back(pixel.redComponent);
+				res.push_back(pixel.greenComponent);
+				res.push_back(pixel.blueComponent);
 			}
 			for (int i = 0; i < skip; i++) {
-				content_out.push_back(0);
+				res.push_back(0);
 			}
 		}
+		return res;
 	}
 public:
 	
 	pair<BMPHEAD, vector<vector<PIXELDATA>>> GetDataToProcess(vector<uint8_t> _content) {
 		content_in = _content;
 		ParseToRead();
+		content_in.clear();
 		return make_pair(head, pixels);
 	}
 
-	vector<uint32_t> GetDataToWrite(pair<BMPHEAD, vector<vector<PIXELDATA>>> data) {
-		ParseToWrite(data);
-		return content_out;
+	pair<BMPHEAD, vector<uint8_t>> GetDataToWrite(pair<BMPHEAD, vector<vector<PIXELDATA>>> data) {
+		return make_pair(data.first, ParseToWrite(data.second, data.first.width));
 	}
 };
 
